@@ -1,0 +1,109 @@
+<upgrade-config-changes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="upgrade-config.xsd">
+
+    <services>
+        <service name="KAFKA">
+            <component name="KAFKA_BROKER">
+                <changes>
+                    <definition xsi:type="configure" id="hdf_3_3_kafka_plaintext_sasl_config_change">
+                        <type>kafka-broker</type>
+                        <set key="security.inter.broker.protocol" value="SASL_PLAINTEXT"
+                             if-type="kafka-broker" if-key="security.inter.broker.protocol" if-value="PLAINTEXTSASL"/>
+                        <replace key="listeners" find="PLAINTEXTSASL://" replace-with="SASL_PLAINTEXT://"/>
+                    </definition>
+
+                    <!-- upgrade kafka version to 2.1 in case of HDF-3.4 -->
+                    <definition xsi:type="configure" id="hdf_3_4_add_inter_broker_protocol_version">
+                        <type>kafka-broker</type>
+                            <set key="inter.broker.protocol.version" value="2.1" />
+                    </definition>
+                    <definition xsi:type="configure" id="hdf_3_4_add_skip_log_message_format_version">
+                        <type>kafka-broker</type>
+                            <set key="log.message.format.version" value="2.1" if-type="kafka-broker" if-key="log.message.format.version" if-key-state="absent"/>
+                    </definition>
+                </changes>
+            </component>
+        </service>
+
+        <service name="NIFI">
+            <component name="NIFI_MASTER">
+                <changes>
+                    <!-- Update these configs in nifi-properties. -->
+                    <definition xsi:type="configure" id="hdf_3_3_0_0_update_nifi_properties_configs">
+                        <type>nifi-properties</type>
+                        <set key="nifi.version" value="1.8.0.{{stack_version_buildnum}}"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_update_nifi_properties_version_configs">
+                        <type>nifi-properties</type>
+                        <set key="nifi.version" value="1.9.0.{{stack_version_buildnum}}"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_update_nifi_properties_autoloaddir_configs">
+                        <type>nifi-properties</type>
+                        <set key="nifi.nar.library.autoload.directory" value="{{nifi_internal_dir}}/work/extensions"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_add_nifi_cluster_load_balance_host">
+                        <type>nifi-properties</type>
+                        <set key="nifi.cluster.load.balance.host" value="" if-type="nifi-properties" if-key="nifi.cluster.load.balance.host" if-key-state="absent"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_add_nifi_cluster_load_balance_port">
+                        <type>nifi-properties</type>
+                        <set key="nifi.cluster.load.balance.port" value="6342" if-type="nifi-properties" if-key="nifi.cluster.load.balance.port" if-key-state="absent"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_add_nifi_cluster_load_balance_connections_per_node">
+                        <type>nifi-properties</type>
+                        <set key="nifi.cluster.load.balance.connections.per.node" value="4" if-type="nifi-properties" if-key="nifi.cluster.load.balance.connections.per.node" if-key-state="absent"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_add_nifi_cluster_load_balance_max_thread_count">
+                        <type>nifi-properties</type>
+                        <set key="nifi.cluster.load.balance.max.thread.count" value="8" if-type="nifi-properties" if-key="nifi.cluster.load.balance.max.thread.count" if-key-state="absent"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_add_nifi_cluster_load_balance_comms_timeout">
+                        <type>nifi-properties</type>
+                        <set key="nifi.cluster.load.balance.comms.timeout" value="30s" if-type="nifi-properties" if-key="nifi.cluster.load.balance.comms.timeout" if-key-state="absent"/>
+                    </definition>
+
+                </changes>
+            </component>
+        </service>
+
+        <service name="NIFI_REGISTRY">
+            <component name="NIFI_REGISTRY_MASTER">
+                <changes>
+                    <!-- Update these configs in nifi-registry-properties. -->
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_update_nifi_registry_properties_ranger_ext">
+                        <type>nifi-registry-properties</type>
+                        <set key="nifi.registry.extension.dir.ranger" value="{{nifi_registry_install_dir}}/ext/ranger/lib"/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_update_nifi_registry_properties_service_principal">
+                        <type>nifi-registry-properties</type>
+                        <set key="nifi.registry.kerberos.service.principal" value=""/>
+                    </definition>
+
+                    <definition xsi:type="configure" id="hdf_3_4_0_0_update_nifi_registry_properties_service_keytab">
+                        <type>nifi-registry-properties</type>
+                        <set key="nifi.registry.kerberos.service.keytab.location" value=""/>
+                    </definition>
+                </changes>
+            </component>
+        </service>
+
+        <service name="STORM">
+            <component name="NIMBUS">
+                <changes>
+                        <definition xsi:type="configure" id="hdf_3_4_remove_storm_transformer" summary="Remove Storm Client JAR Transformer">
+                            <type>storm-site</type>
+                            <transfer operation="delete" delete-key="client.jartransformer.class" />
+                        </definition>
+                </changes>
+            </component>
+        </service>
+    </services>
+
+</upgrade-config-changes>
