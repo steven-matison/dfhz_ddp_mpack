@@ -7,36 +7,9 @@
   "description": "DDP Ambari Management Pack",
   "prerequisites": {
     "min-ambari-version": "2.5.1.0",
-    "max-ambari-version": "2.7.3"
+    "max-ambari-version": "2.7.5"
   },
-  "hooks": [
-    {
-      "name": "after-install",
-      "type": "python",
-      "script": "hooks/after_install.py"
-    },
-    {
-      "name": "before-install",
-      "type": "python",
-      "script": "hooks/before_install.py"
-    },
-    {
-      "name": "before-upgrade",
-      "type": "python",
-      "script": "hooks/before_upgrade.py"
-    },
-    {
-      "name": "after-upgrade",
-      "type": "python",
-      "script": "hooks/after_upgrade.py"
-    }
-  ],
   "artifacts": [
-    {
-      "name": "hdf-service-definitions",
-      "type": "service-definitions",
-      "source_dir": "common-services"
-    },
     {
       "name": "hdf-stack-definitions",
       "type": "stack-definitions",
