@@ -11,7 +11,7 @@
   },
   "artifacts": [
     {
-      "name": "ddp-stack-definitions",
+      "name": "hdf-stack-definitions",
       "type": "stack-definitions",
       "source_dir": "stacks"
     }

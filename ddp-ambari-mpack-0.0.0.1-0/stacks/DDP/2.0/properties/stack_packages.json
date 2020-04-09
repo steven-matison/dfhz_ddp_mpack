@@ -1,5 +1,5 @@
 {
-  "DDP": {
+  "HDF": {
     "stack-select": {
       "KAFKA": {
         "KAFKA_BROKER": {

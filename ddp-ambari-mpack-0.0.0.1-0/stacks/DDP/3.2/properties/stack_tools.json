@@ -1,5 +1,5 @@
 {
-  "DDP": {
+  "HDF": {
     "stack_selector": [
       "hdf-select",
       "/usr/bin/hdf-select",
