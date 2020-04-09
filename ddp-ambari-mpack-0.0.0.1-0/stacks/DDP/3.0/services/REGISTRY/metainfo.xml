@@ -16,11 +16,18 @@
    limitations under the License.
 -->
 <metainfo>
-  <schemaVersion>2.0</schemaVersion>
-  <services>
-    <service>
-      <name>REGISTRY</name>
-      <extends>common-services/REGISTRY/0.3.0</extends>
-    </service>
-  </services>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>REGISTRY</name>
+            <version>0.7.0</version>
+            <extends>common-services/REGISTRY/0.7.0</extends>
+            <themes>
+                <theme>
+                    <fileName>theme_version_4.json</fileName>
+                    <default>true</default>
+                </theme>
+            </themes>
+        </service>
+    </services>
 </metainfo>

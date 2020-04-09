@@ -7,7 +7,7 @@
   "description": "DDP Ambari Management Pack",
   "prerequisites": {
     "min-ambari-version": "2.5.1.0",
-    "max-ambari-version": "2.7.5"
+    "max-ambari-version": "2.7.3"
   },
   "artifacts": [
     {
@@ -16,7 +16,7 @@
       "source_dir": "common-services"
     },
     {
-      "name": "hdf-stack-definitions",
+      "name": "ddp-stack-definitions",
       "type": "stack-definitions",
       "source_dir": "stacks"
     }

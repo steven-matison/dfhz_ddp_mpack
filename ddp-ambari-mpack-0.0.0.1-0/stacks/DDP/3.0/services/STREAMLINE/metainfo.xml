@@ -16,12 +16,16 @@
    limitations under the License.
 -->
 <metainfo>
-  <schemaVersion>2.0</schemaVersion>
-  <services>
-    <service>
-      <name>STREAMLINE</name>
-      <extends>common-services/STREAMLINE/0.5.0</extends>
-      <version>0.5.0</version>
-    </service>
-  </services>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>STREAMLINE</name>
+            <version>0.6.0</version>
+            <extends>common-services/STREAMLINE/0.6.0</extends>
+            <requiredServices>
+                <service>AMBARI_INFRA_SOLR</service>
+                <service>LOGSEARCH</service>
+            </requiredServices>
+        </service>
+    </services>
 </metainfo>

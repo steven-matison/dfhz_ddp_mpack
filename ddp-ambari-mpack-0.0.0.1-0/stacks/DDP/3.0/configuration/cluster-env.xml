@@ -22,13 +22,16 @@
 
 <configuration>
     <property>
-        <name>stack_tools</name>
+        <name>stack_features</name>
         <value></value>
-        <description>Stack specific tools</description>
+        <description>List of features supported by the stack</description>
         <property-type>VALUE_FROM_PROPERTY_FILE</property-type>
         <value-attributes>
-            <property-file-name>stack_tools.json</property-file-name>
+            <property-file-name>stack_features.json</property-file-name>
             <property-file-type>json</property-file-type>
+            <read-only>true</read-only>
+            <overridable>false</overridable>
+            <visible>false</visible>
         </value-attributes>
         <on-ambari-upgrade add="true"/>
     </property>
