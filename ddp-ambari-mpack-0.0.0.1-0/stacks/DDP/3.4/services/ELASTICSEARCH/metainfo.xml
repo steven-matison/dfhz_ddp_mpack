@@ -19,6 +19,7 @@
         <service>
             <name>ELASTICSEARCH</name>
             <version>7.4.2</version>
+            <extends>common-services/ELASTICSEARCH/7.4.2</extends>
         </service>
     </services>
 </metainfo>

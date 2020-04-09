@@ -19,6 +19,7 @@
         <service>
             <name>KIBANA</name>
             <version>7.4.2</version>
+            <extends>common-services/KIBANA/7.4.2</extends>
         </service>
     </services>
 </metainfo>
