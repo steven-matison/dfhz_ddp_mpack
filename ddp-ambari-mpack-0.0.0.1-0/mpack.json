@@ -11,11 +11,6 @@
   },
   "artifacts": [
     {
-      "name": "ddp-service-definitions",
-      "type": "service-definitions",
-      "source_dir": "common-services"
-    },
-    {
       "name": "hdf-stack-definitions",
       "type": "stack-definitions",
       "source_dir": "stacks"
