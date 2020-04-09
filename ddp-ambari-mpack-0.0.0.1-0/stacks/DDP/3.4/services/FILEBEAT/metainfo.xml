@@ -19,7 +19,6 @@
         <service>
             <name>FILEBEAT</name>
             <version>7.4.2</version>
-            <extends>common-services/FILEBEAT/7.4.2</extends>
         </service>
     </services>
 </metainfo>

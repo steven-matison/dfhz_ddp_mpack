@@ -19,7 +19,6 @@
         <service>
             <name>METRICBEAT</name>
             <version>7.4.2</version>
-            <extends>common-services/METRICBEAT/7.4.2</extends>
         </service>
     </services>
 </metainfo>
