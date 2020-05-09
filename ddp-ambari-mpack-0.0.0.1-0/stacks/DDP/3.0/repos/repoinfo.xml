@@ -17,18 +17,6 @@
 -->
 <reposinfo>
     <latest>http://public-repo-1.hortonworks.com/HDF/hdf_urlinfo.json</latest>
-    <os family="redhat-ppc7">
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/centos7-ppc/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/centos7-ppc</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
-    </os>
     <os family="redhat7">
         <repo>
             <baseurl>http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.4.0.0</baseurl>
@@ -40,77 +28,10 @@
             <repoid>HDP-UTILS-1.1.0.22</repoid>
             <reponame>HDP-UTILS</reponame>
         </repo>
-    </os>
-    <os family="suse12">
         <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/sles12/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/sles12</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
-    </os>
-    <os family="debian9">
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/debian9/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/debian9</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
-    </os>
-    <os family="ubuntu12">
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/ubuntu12/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/ubuntu12</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
-    </os>
-    <os family="ubuntu14">
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/ubuntu14/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/ubuntu14</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
-    </os>
-    <os family="ubuntu16">
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/ubuntu16/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/ubuntu16</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
-    </os>
-    <os family="amazonlinux2">
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/amazonlinux2/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/amazonlinux2</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
+            <baseurl>https://artifacts.elastic.co/packages/7.x/yum</baseurl>
+            <repoid>elasticsearch-7.x</repoid>
+            <reponame>ELASTICSEARCH</reponame>
         </repo>
     </os>
 </reposinfo>
