@@ -1,152 +1,7 @@
 {
   "DDP": {
     "stack-select": {
-      "KAFKA": {
-        "KAFKA_BROKER": {
-          "STACK-SELECT-PACKAGE": "kafka-broker",
-          "INSTALL": [
-            "kafka-broker"
-          ],
-          "PATCH": [
-            "kafka-broker"
-          ],
-          "STANDARD": [
-            "kafka-broker"
-          ]
-        }
-      },
-      "RANGER": {
-        "RANGER_ADMIN": {
-          "STACK-SELECT-PACKAGE": "ranger-admin",
-          "INSTALL": [
-            "ranger-admin"
-          ],
-          "PATCH": [
-            "ranger-admin"
-          ],
-          "STANDARD": [
-            "ranger-admin"
-          ]
-        },
-        "RANGER_TAGSYNC": {
-          "STACK-SELECT-PACKAGE": "ranger-tagsync",
-          "INSTALL": [
-            "ranger-tagsync"
-          ],
-          "PATCH": [
-            "ranger-tagsync"
-          ],
-          "STANDARD": [
-            "ranger-tagsync"
-          ]
-        },
-        "RANGER_USERSYNC": {
-          "STACK-SELECT-PACKAGE": "ranger-usersync",
-          "INSTALL": [
-            "ranger-usersync"
-          ],
-          "PATCH": [
-            "ranger-usersync"
-          ],
-          "STANDARD": [
-            "ranger-usersync"
-          ]
-        }
-      },
-      "RANGER_KMS": {
-        "RANGER_KMS_SERVER": {
-          "STACK-SELECT-PACKAGE": "ranger-kms",
-          "INSTALL": [
-            "ranger-kms"
-          ],
-          "PATCH": [
-            "ranger-kms"
-          ],
-          "STANDARD": [
-            "ranger-kms"
-          ]
-        }
-      },
-      "STORM": {
-        "NIMBUS": {
-          "STACK-SELECT-PACKAGE": "storm-nimbus",
-          "INSTALL": [
-            "storm-client",
-            "storm-nimbus"
-          ],
-          "PATCH": [
-            "storm-client",
-            "storm-nimbus"
-          ],
-          "STANDARD": [
-            "storm-client",
-            "storm-nimbus"
-          ]
-        },
-        "SUPERVISOR": {
-          "STACK-SELECT-PACKAGE": "storm-supervisor",
-          "INSTALL": [
-            "storm-supervisor"
-          ],
-          "PATCH": [
-            "storm-supervisor"
-          ],
-          "STANDARD": [
-            "storm-client",
-            "storm-supervisor"
-          ]
-        },
-        "DRPC_SERVER": {
-          "STACK-SELECT-PACKAGE": "storm-client",
-          "INSTALL": [
-            "storm-client"
-          ],
-          "PATCH": [
-            "storm-client"
-          ],
-          "STANDARD": [
-            "storm-client"
-          ]
-        },
-        "STORM_UI_SERVER": {
-          "STACK-SELECT-PACKAGE": "storm-client",
-          "INSTALL": [
-            "storm-client"
-          ],
-          "PATCH": [
-            "storm-client"
-          ],
-          "STANDARD": [
-            "storm-client"
-          ]
-        }
-      },
-      "ZOOKEEPER": {
-        "ZOOKEEPER_CLIENT": {
-          "STACK-SELECT-PACKAGE": "zookeeper-client",
-          "INSTALL": [
-            "zookeeper-client"
-          ],
-          "PATCH": [
-            "zookeeper-client"
-          ],
-          "STANDARD": [
-            "zookeeper-client"
-          ]
-        },
-        "ZOOKEEPER_SERVER": {
-          "STACK-SELECT-PACKAGE": "zookeeper-server",
-          "INSTALL": [
-            "zookeeper-server"
-          ],
-          "PATCH": [
-            "zookeeper-server"
-          ],
-          "STANDARD": [
-            "zookeeper-server"
-          ]
-        }
-      },
+      
       "NIFI": {
         "NIFI_MASTER": {
           "STACK-SELECT-PACKAGE": "nifi",
@@ -220,30 +75,9 @@
             "streamline"
           ]
         }
-      },
-      "KNOX": {
-        "KNOX_GATEWAY": {
-          "STACK-SELECT-PACKAGE": "knox-server",
-          "INSTALL": [
-            "knox-server"
-          ],
-          "PATCH": [
-            "knox-server"
-          ],
-          "STANDARD": [
-            "knox-server"
-          ]
-        }
       }
     },
     "conf-select": {
-      "kafka": [
-        {
-          "conf_dir": "/etc/kafka/conf",
-          "current_dir": "{0}/current/kafka-broker/conf",
-          "component": "kafka-broker"
-        }
-      ],
       "nifi": [
         {
           "conf_dir": "/etc/nifi/conf",
@@ -277,62 +111,6 @@
           "conf_dir": "/etc/registry/conf",
           "current_dir": "{0}/current/registry/conf",
           "component": "registry"
-        }
-      ],
-      "ranger-admin": [
-        {
-          "conf_dir": "/etc/ranger/admin/conf",
-          "current_dir": "{0}/current/ranger-admin/conf",
-          "component": "ranger-admin"
-        }
-      ],
-      "ranger-kms": [
-        {
-          "conf_dir": "/etc/ranger/kms/conf",
-          "current_dir": "{0}/current/ranger-kms/conf",
-          "component": "ranger-kms"
-        }
-      ],
-      "ranger-tagsync": [
-        {
-          "conf_dir": "/etc/ranger/tagsync/conf",
-          "current_dir": "{0}/current/ranger-tagsync/conf",
-          "component": "ranger-tagsync"
-        }
-      ],
-      "ranger-usersync": [
-        {
-          "conf_dir": "/etc/ranger/usersync/conf",
-          "current_dir": "{0}/current/ranger-usersync/conf",
-          "component": "ranger-usersync"
-        }
-      ],
-      "storm": [
-        {
-          "conf_dir": "/etc/storm/conf",
-          "current_dir": "{0}/current/storm-client/conf",
-          "component": "storm-client"
-        }
-      ],
-      "storm-slider-client": [
-        {
-          "conf_dir": "/etc/storm-slider-client/conf",
-          "current_dir": "{0}/current/storm-slider-client/conf",
-          "component": "storm-slider-client"
-        }
-      ],
-      "zookeeper": [
-        {
-          "conf_dir": "/etc/zookeeper/conf",
-          "current_dir": "{0}/current/zookeeper-client/conf",
-          "component": "zookeeper-client"
-        }
-      ],
-      "knox": [
-        {
-          "conf_dir": "/etc/knox/conf",
-          "current_dir": "{0}/current/knox-server/conf",
-          "component": "knox-server"
         }
       ]
     }

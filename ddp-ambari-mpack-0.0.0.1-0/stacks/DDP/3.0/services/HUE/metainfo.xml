@@ -19,7 +19,7 @@
     <schemaVersion>2.0</schemaVersion>
     <services>
         <service>
-            <name>Hue</name>
+            <name>HUE</name>
             <version>4.6.0</version>
             <extends>common-services/HUE/4.6.0</extends>
         </service>
