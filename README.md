@@ -8,7 +8,7 @@ ambari-server restart</pre>
 
 
 #### Management Pack Removal
-<pre>aambari-server uninstall-mpack --mpack-name=ddp-ambari-mpack
+<pre>ambari-server uninstall-mpack --mpack-name=ddp-ambari-mpack
 ambari-server restart</pre>
 
 #### HDP 3.x Status
