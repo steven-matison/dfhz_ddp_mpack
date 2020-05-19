@@ -7,7 +7,7 @@ yum install https://makeopensourcegreatagain.com/rpms/ambari-agent-2.7.5.0-0.x86
 ambari-server setup -s</pre>
 
 #### Management Pack Installaion
-<pre>ambari-server install-mpack --mpack=https://github.com/steven-dfheinz/dfhz_ddp_mpack/raw/master/ddp-ambari-mpack-0.0.0.1-0.tar.gz --verbose
+<pre>ambari-server install-mpack --mpack=https://github.com/steven-dfheinz/dfhz_ddp_mpack/raw/master/ddp-ambari-mpack-0.0.0.2-0.tar.gz --verbose
 ambari-server restart</pre>
 
 
