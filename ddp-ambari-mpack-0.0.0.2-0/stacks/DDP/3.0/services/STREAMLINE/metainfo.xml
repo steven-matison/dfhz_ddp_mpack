@@ -20,6 +20,8 @@
     <services>
         <service>
             <name>STREAMLINE</name>
+            <displayName>Streaming Analytics Manager</displayName>
+            <comment>Hortonworks Streaming Analytics Manager makes it easy to build streaming applications and do analytics on streaming data.</comment>
             <version>0.6.0</version>
             <requiredServices>
                 <service>AMBARI_INFRA_SOLR</service>

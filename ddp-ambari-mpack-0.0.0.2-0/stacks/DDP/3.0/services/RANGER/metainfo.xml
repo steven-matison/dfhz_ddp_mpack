@@ -23,6 +23,8 @@
   <services>
     <service>
       <name>RANGER</name>
+      <displayName>Ranger</displayName>
+      <comment>Comprehensive security for Hadoop</comment>
       <version>1.2.0.3.4</version>
       <themes>
         <theme>

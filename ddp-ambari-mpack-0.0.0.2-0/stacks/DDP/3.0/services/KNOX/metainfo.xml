@@ -18,6 +18,8 @@
   <services>
     <service>
       <name>KNOX</name>
+      <displayName>Knox</displayName>
+       <comment>Provides a single point of authentication and access for Apache Hadoop services in a cluster</comment>
       <version>1.0.0.3.4</version>
     </service>
   </services>

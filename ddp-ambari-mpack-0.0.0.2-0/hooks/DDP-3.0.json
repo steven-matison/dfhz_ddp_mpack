@@ -21,7 +21,7 @@
           "applicable_stacks": [
             {
               "stack_name": "DDP",
-              "stack_version": "3.1"
+              "stack_version": "3.0"
             }
           ]
         },
@@ -31,7 +31,7 @@
           "applicable_stacks": [
             {
               "stack_name": "DDP",
-              "stack_version": "3.1"
+              "stack_version": "3.0"
             }
           ]
         },
@@ -41,7 +41,7 @@
           "applicable_stacks": [
             {
               "stack_name": "DDP",
-              "stack_version": "3.1"
+              "stack_version": "3.0"
             }
           ]
         },
@@ -51,7 +51,7 @@
           "applicable_stacks": [
             {
               "stack_name": "DDP",
-              "stack_version": "3.1"
+              "stack_version": "3.0"
             }
           ]
         }

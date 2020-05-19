@@ -18,6 +18,8 @@
     <services>
         <service>
             <name>KAFKA</name>
+            <displayName>Kafka</displayName>
+            <comment>A high-throughput distributed messaging system</comment>
             <version>2.1.0.3.4</version>
         </service>
     </services>

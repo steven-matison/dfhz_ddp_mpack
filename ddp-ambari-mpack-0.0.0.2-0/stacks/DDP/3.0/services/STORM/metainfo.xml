@@ -18,6 +18,8 @@
     <services>
         <service>
             <name>STORM</name>
+            <displayName>Storm</displayName>
+            <comment>Apache Hadoop Stream processing framework</comment>
             <version>1.2.1.3.4</version>
         </service>
     </services>
