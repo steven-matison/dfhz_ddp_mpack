@@ -19,7 +19,6 @@ limitations under the License.
 '''
 
 import os
-
 from switch_addon_services import switch_addon_services
 
 
