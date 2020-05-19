@@ -2,7 +2,7 @@
 <h1>DFHz Demo Data Platform for Ambari</h1>
 
 #### Install Ambari From MOSGA RPMS:
-<pre> wget -O /etc/yum.repos.d/mosga.repo https://makeopensourcegreatagain.com/rpms/mosga.repo
+<pre>wget -O /etc/yum.repos.d/mosga.repo https://makeopensourcegreatagain.com/rpms/mosga.repo
 yum install ambari-server ambari-agent -y
 ambari-server setup -s</pre>
 
