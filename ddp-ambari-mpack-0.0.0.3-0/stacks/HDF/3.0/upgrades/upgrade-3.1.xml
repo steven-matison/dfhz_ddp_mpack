@@ -1,0 +1,500 @@
+<?xml version="1.0"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<upgrade xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="upgrade-pack.xsd">
+  <target>3.1.*.*</target>
+  <target-stack>HDF-3.1</target-stack>
+  <skip-failures>false</skip-failures>
+  <skip-service-check-failures>false</skip-service-check-failures>
+  <type>ROLLING</type>
+  <prerequisite-checks/>
+
+  <order>
+
+    <group xsi:type="cluster" name="PREPARE_CONFIG" title="Prepare Configs">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <supports-auto-skip-failure>false</supports-auto-skip-failure>
+
+        <execute-stage service="REGISTRY" component="REGISTRY_SERVER" title="Creating SCHEMA REGISTRY's config dir">
+             <task xsi:type="execute" hosts="all">
+                <summary>Create Registry Config Version</summary>
+                <script>scripts/registry_server.py</script>
+                <function>create_30_config_version</function>
+             </task>
+       </execute-stage>
+       <execute-stage service="STREAMLINE" component="STREAMLINE_SERVER" title="Creating STREAMLINE ANALYTICS MANAGER's config dir">
+             <task xsi:type="execute" hosts="all">
+                <summary>Create Streamline Config Version</summary>
+                <script>scripts/streamline_server.py</script>
+                <function>create_30_config_version</function>
+            </task>
+       </execute-stage>
+    </group>
+
+    <group xsi:type="cluster" name="PREPARE_BACKUPS" title="Prepare Backups">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <supports-auto-skip-failure>false</supports-auto-skip-failure>
+
+      <execute-stage service="STREAMLINE" component="STREAMLINE_SERVER" title="Confirm Required Components Are Installed">
+        <task xsi:type="manual">
+          <message>Streaming Analytics Manager requires Ambari Infra and Logsearch to be installed. If these components are not installed please use the Downgrade option, install both components, and return to upgrade.</message>
+        </task>
+      </execute-stage>
+
+      <execute-stage service="RANGER" component="RANGER_ADMIN" title="Pre Upgrade Ranger Admin Backup">
+        <task xsi:type="manual">
+          <message>Before continuing, please backup the Ranger Admin database on the following host(s): {{hosts.all}}.</message>
+        </task>
+      </execute-stage>
+
+      <execute-stage service="STREAMLINE" component="STREAMLINE_SERVER" title="Backup Streamline Analytics Manager Database">
+        <task xsi:type="manual">
+            <message>Before continuing, please backup the SAM database.</message>
+        </task>
+      </execute-stage>
+
+      <execute-stage service="REGISTRY" component="REGISTRY_SERVER" title="Backup Schema Registry Database">
+        <task xsi:type="manual">
+            <message>Before continuing, please backup the Registry database.</message>
+        </task>
+      </execute-stage>
+    </group>
+
+    <group name="ZOOKEEPER" title="ZooKeeper">
+      <supports-auto-skip-failure>false</supports-auto-skip-failure>
+      <service name="ZOOKEEPER">
+        <component>ZOOKEEPER_SERVER</component>
+      </service>
+    </group>
+
+    <group name="KAFKA" title="Kafka">
+      <skippable>true</skippable>
+      <service name="KAFKA">
+        <component>KAFKA_BROKER</component>
+      </service>
+    </group>
+
+    <group name="STORM" title="Storm">
+      <skippable>true</skippable>
+      <service name="STORM">
+        <component>NIMBUS</component>
+        <component>SUPERVISOR</component>
+        <component>STORM_UI_SERVER</component>
+        <component>DRPC_SERVER</component>
+      </service>
+    </group>
+
+    <group name="SERVICE_CHECK_1" title="Kafka and Storm Service Checks" xsi:type="service-check">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <priority>
+          <service>ZOOKEEPER</service>
+          <service>KAFKA</service>
+          <service>STORM</service>
+      </priority>
+      <exclude>
+        <service>AMBARI_METRICS</service>
+        <service>AMBARI_INFRA</service>
+        <service>LOGSEARCH</service>
+        <service>NIFI</service>
+        <service>REGISTRY</service>
+        <service>STREAMLINE</service>
+        <service>RANGER</service>
+      </exclude>
+    </group>
+
+    <group name="CLIENTS" title="Client Components">
+      <service-check>false</service-check>
+      <service name="ZOOKEEPER">
+        <component>ZOOKEEPER_CLIENT</component>
+      </service>
+
+      <service-check>true</service-check>
+      <service name="KAFKA">
+        <component>KAFKA_CLIENT</component>
+      </service>
+
+      <service-check>true</service-check>
+      <service name="STORM">
+        <component>STORM_CLIENT</component>
+      </service>
+    </group>
+
+    <group name="REGISTRY" title="Registry">
+      <skippable>true</skippable>
+      <service name="REGISTRY">
+        <component>REGISTRY_SERVER</component>
+      </service>
+    </group>
+
+    <group name="STREAMLINE" title="Streaming Analytics Server">
+      <skippable>true</skippable>
+      <service name="STREAMLINE">
+        <component>STREAMLINE_SERVER</component>
+      </service>
+    </group>
+
+    <group name="SERVICE_CHECK_2" title="Registry and Streaming Service Checks" xsi:type="service-check">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <priority>
+        <service>ZOOKEEPER</service>
+        <service>KAFKA</service>
+        <service>STORM</service>
+        <service>REGISTRY</service>
+        <service>STREAMLINE</service>
+      </priority>
+      <exclude>
+        <service>AMBARI_METRICS</service>
+        <service>AMBARI_INFRA</service>
+        <service>LOGSEARCH</service>
+        <service>NIFI</service>
+        <service>RANGER</service>
+      </exclude>
+    </group>
+
+    <group xsi:type="stop" name="STOP_LOW_LEVEL_SERVICE_COMPONENTS_NIFI" title="Stop Components for Nifi Services">
+      <service-check>false</service-check>
+      <skippable>true</skippable>
+      <supports-auto-skip-failure>false</supports-auto-skip-failure>
+      <parallel-scheduler/>
+
+      <service name="NIFI">
+        <component>NIFI_MASTER</component>
+      </service>
+    </group>
+
+
+    <group xsi:type="cluster" name="Upgrade service configs" title="Upgrade service configs">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <!-- NIFI -->
+      <execute-stage service="NIFI" component="NIFI_MASTER" title="Update config changes for Nifi Master">
+          <task xsi:type="configure" id="hdf_3_1_0_0_update_nifi_properties_configs"/>
+      </execute-stage>
+    </group>
+
+    <group xsi:type="restart" name="NIFI" title="NIFI">
+      <service-check>false</service-check>
+      <skippable>true</skippable>
+      <parallel-scheduler/>
+      <service name="NIFI">
+        <component>NIFI_MASTER</component>
+      </service>
+    </group>
+
+    <group name="SERVICE_CHECK_3" title="Nifi Service Checks" xsi:type="service-check">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <priority>
+        <service>ZOOKEEPER</service>
+        <service>KAFKA</service>
+        <service>NIFI</service>
+      </priority>
+      <exclude>
+        <service>STORM</service>
+        <service>AMBARI_METRICS</service>
+        <service>AMBARI_INFRA</service>
+        <service>LOGSEARCH</service>
+        <service>REGISTRY</service>
+        <service>STREAMLINE</service>
+        <service>RANGER</service>
+      </exclude>
+    </group>
+
+    <group name="RANGER" title="Ranger">
+      <skippable>true</skippable>
+      <supports-auto-skip-failure>false</supports-auto-skip-failure>
+      <service name="RANGER">
+        <component>RANGER_ADMIN</component>
+        <component>RANGER_USERSYNC</component>
+        <component>RANGER_TAGSYNC</component>
+      </service>
+    </group>
+
+    <group name="SERVICE_CHECK_4" title="Ranger Service Checks" xsi:type="service-check">
+      <direction>UPGRADE</direction>
+      <skippable>true</skippable>
+      <priority>
+        <service>ZOOKEEPER</service>
+        <service>KAFKA</service>
+        <service>RANGER</service>
+      </priority>
+      <exclude>
+        <service>STORM</service>
+        <service>AMBARI_METRICS</service>
+        <service>AMBARI_INFRA</service>
+        <service>LOGSEARCH</service>
+        <service>REGISTRY</service>
+        <service>STREAMLINE</service>
+        <service>NIFI</service>
+      </exclude>
+    </group>
+
+    <!--
+    After processing this group, the user-specified Kerberos descriptor will be updated to work with
+    the new stack-level Kerberos descriptor.
+    -->
+    <group xsi:type="cluster" name="UPDATE_KERBEROS_DESCRIPTORS" title="Update Kerberos Descriptors">
+      <condition xsi:type="security" type="kerberos"/>
+      <execute-stage title="Update the user-specified Kerberos descriptor">
+        <task xsi:type="server_action" class="org.apache.ambari.server.serveraction.upgrades.UpgradeUserKerberosDescriptor"/>
+      </execute-stage>
+    </group>
+
+    <!--
+    After processing this group, items declared to be preconfigured will be applied to the existing
+    configurations.
+    -->
+    <group xsi:type="cluster" name="PRECONFIGURE_COMMON_KERBEROS_PROPERTIES" title="Preconfigure Kerberos-related properties">
+      <condition xsi:type="security" type="kerberos"/>
+      <direction>UPGRADE</direction>
+      <execute-stage title="Preconfigure Kerberos-related properties">
+        <task xsi:type="server_action" class="org.apache.ambari.server.serveraction.upgrades.PreconfigureKerberosAction"/>
+      </execute-stage>
+    </group>
+
+
+    <group xsi:type="cluster" name="ALL_HOST_OPS" title="Finalize Hosts">
+      <scope>COMPLETE</scope>
+      <execute-stage title="Update remaining HDF stack to {{version}}">
+        <task xsi:type="execute">
+          <script>scripts/stack_select_set_all.py</script>
+          <function>actionexecute</function>
+        </task>
+      </execute-stage>
+    </group>
+
+    <group xsi:type="cluster" name="FINALIZE_PRE_CHECK" title="Finalize {{direction.text.proper}} Pre-Check">
+      <direction>UPGRADE</direction>
+
+      <execute-stage title="Check Component Versions">
+        <task xsi:type="server_action" class="org.apache.ambari.server.serveraction.upgrades.ComponentVersionCheckAction" />
+      </execute-stage>
+    </group>
+
+    <group xsi:type="cluster" name="POST_CLUSTER" title="Finalize {{direction.text.proper}}">
+      <skippable>true</skippable>
+      <supports-auto-skip-failure>false</supports-auto-skip-failure>
+
+      <execute-stage title="Confirm Finalize">
+        <direction>UPGRADE</direction>
+        <task xsi:type="manual">
+          <message>Please confirm you are ready to finalize.</message>
+        </task>
+      </execute-stage>
+
+      <execute-stage title="Save Cluster State">
+        <task xsi:type="server_action" class="org.apache.ambari.server.serveraction.upgrades.FinalizeUpgradeAction">
+        </task>
+      </execute-stage>
+    </group>
+  </order>
+
+  <processing>
+    <service name="ZOOKEEPER">
+      <component name="ZOOKEEPER_SERVER">
+        <pre-upgrade>
+          <task xsi:type="configure" id="zookeeper_log4j_parameterize" />
+        </pre-upgrade>
+        <pre-downgrade />
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+
+      <component name="ZOOKEEPER_CLIENT">
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+    <service name="KAFKA">
+      <component name="KAFKA_BROKER">
+        <pre-upgrade>
+          <task xsi:type="configure" id="kafka_log4j_parameterize" />
+          <task xsi:type="configure" id="add_inter_broker_protocol_version" />
+          <task xsi:type="configure" id="add_skip_log_message_format_version" />
+        </pre-upgrade>
+        <pre-downgrade/> <!--  no-op to prevent config changes on downgrade -->
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+    <service name="STORM">
+      <component name="NIMBUS">
+        <pre-upgrade>
+          <task xsi:type="configure" id="storm_worker_log4j_parameterize" />
+          <task xsi:type="configure" id="storm_cluster_log4j_parameterize" />
+          <task xsi:type="configure" id="storm_nimbus_autocred_config" />
+          <task xsi:type="configure" id="storm_remove_jmxetric"/>
+          <task xsi:type="configure" id="hdf_3_1_0_0_update_storm_env_ext_classpath"/>
+          <task xsi:type="configure" id="hdf_3_1_0_0_storm_logsearch_conf"/>
+        </pre-upgrade>
+        <pre-downgrade/> <!--  no-op to prevent config changes on downgrade -->
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+      <component name="SUPERVISOR">
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+      <component name="STORM_UI_SERVER">
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+      <component name="DRPC_SERVER">
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+    <service name="REGISTRY">
+      <component name="REGISTRY_SERVER">
+        <pre-upgrade>
+            <task xsi:type="configure" id="hdf_3_1_0_0_update_registry_log4j"/>
+        </pre-upgrade>
+        <pre-downgrade>
+           <task xsi:type="execute" hosts="all">
+                <summary>Stop Registry Server</summary>
+                <script>scripts/registry_server.py</script>
+                <function>stop</function>
+           </task>
+           <task xsi:type="manual">
+                <message>Please restore Schema Registry database.</message>
+           </task>
+        </pre-downgrade>
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+    <service name="STREAMLINE">
+      <component name="STREAMLINE_SERVER">
+        <pre-upgrade>
+          <task xsi:type="configure" id="hdf_3_1_0_0_update_streamline_log4j"/>
+          <task xsi:type="configure" id="hdf_3_1_0_0_update_streamline_jaas_config"/>
+        </pre-upgrade>
+        <pre-downgrade>
+           <task xsi:type="execute" hosts="all">
+                <summary>Stop Streamline Server</summary>
+                <script>scripts/streamline_server.py</script>
+                <function>stop</function>
+           </task>
+           <task xsi:type="manual">
+                <message>Please restore Streamline Analytics Manager database.</message>
+           </task>
+        </pre-downgrade>
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+    <service name="NIFI">
+      <component name="NIFI_MASTER">
+        <pre-upgrade>
+            <task xsi:type="configure" id="hdf_3_1_0_0_update_nifi_properties_configs"/>
+            <task xsi:type="configure" id="hdf_3_0_0_0_update_nifi_bootstrap_env_configs"/>
+        </pre-upgrade>
+        <pre-downgrade/> <!--  no-op to prevent config changes on downgrade -->
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+    <service name="RANGER">
+      <component name="RANGER_ADMIN">
+        <pre-upgrade>
+          <task xsi:type="configure" id="admin_log4j_parameterize" />
+          <task xsi:type="configure" id="hdf_3_1_0_remove_bind_anonymous"/>
+          <task xsi:type="execute" hosts="all">
+            <summary>Stop Ranger Admin</summary>
+            <script>scripts/ranger_admin.py</script>
+            <function>stop</function>
+          </task>
+
+          <task xsi:type="execute" hosts="all">
+            <script>scripts/ranger_admin.py</script>
+            <function>set_pre_start</function>
+          </task>
+
+          <task xsi:type="execute" hosts="any">
+            <summary>Upgrading Ranger database schema</summary>
+            <script>scripts/ranger_admin.py</script>
+            <function>setup_ranger_database</function>
+          </task>
+
+          <task xsi:type="configure_function" hosts="all" />
+
+          <task xsi:type="execute" hosts="any">
+            <summary>Applying Ranger java patches</summary>
+            <script>scripts/ranger_admin.py</script>
+            <function>setup_ranger_java_patches</function>
+          </task>
+        </pre-upgrade>
+
+        <pre-downgrade/> <!--  no-op to prevent config changes on downgrade -->
+
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+
+      <component name="RANGER_USERSYNC">
+        <pre-upgrade>
+          <task xsi:type="configure" id="usersync_log4j_parameterize" />
+          <task xsi:type="configure" id="hdf_3_1_0_disable_delta_sync_during_upgrade"/>
+        </pre-upgrade>
+        <pre-downgrade />
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+
+      <component name="RANGER_TAGSYNC">
+
+        <pre-upgrade>
+          <task xsi:type="configure" id="tagsync_log4j_parameterize" />
+          <task xsi:type="execute" hosts="all">
+            <script>scripts/ranger_tagsync.py</script>
+            <function>configure_atlas_user_for_tagsync</function>
+          </task>
+        </pre-upgrade>
+
+        <pre-downgrade copy-upgrade="true" />
+
+        <upgrade>
+          <task xsi:type="restart-task" />
+        </upgrade>
+      </component>
+    </service>
+
+  </processing>
+</upgrade>
