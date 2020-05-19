@@ -1,0 +1,37 @@
+{
+  "type": "full-release",
+  "name": "ddp-ambari-mpack",
+  "version": "0.0.0.2-0",
+  "hash": "8d2f7cf77ab335183b5482af61ad823332c57312",
+  "branch": "UNKNOWN",
+  "description": "DDP Ambari Management Pack",
+  "prerequisites": {
+    "min-ambari-version": "2.5.1.0",
+    "max-ambari-version": "2.7.5"
+  },
+  "hooks": [
+    {
+      "name": "after-install",
+      "type": "python",
+      "script": "hooks/after_install.py"
+    },
+    {
+      "name": "before-install",
+      "type": "python",
+      "script": "hooks/before_install.py"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "ddp-service-definitions",
+      "type": "service-definitions",
+      "source_dir": "common-services"
+    },
+    {
+      "name": "ddp-stack-definitions",
+      "type": "stack-definitions",
+      "source_dir": "stacks"
+    }
+  ]
+}
+
