@@ -7,7 +7,7 @@ yum install ambari-server ambari-agent -y
 ambari-server setup -s</pre>
 
 #### Management Pack Installaion
-<pre>ambari-server install-mpack --mpack=https://github.com/steven-dfheinz/dfhz_ddp_mpack/raw/master/ddp-ambari-mpack-0.0.0.3-0.tar.gz --verbose
+<pre>ambari-server install-mpack --mpack=https://github.com/steven-dfheinz/dfhz_ddp_mpack/raw/master/ddp-ambari-mpack-0.0.0.4-1.tar.gz --verbose
 ambari-server restart</pre>
 
 

@@ -1,0 +1,42 @@
+{
+  "type" : "full-release",
+  "name" : "hdf-ambari-mpack",
+  "version": "3.4.1.1-4",
+  "hash": "8d2f7cf77ab335183b5482af61ad823332c57312",
+  "branch": "UNKNOWN",
+  "description" : "DDP Ambari Management Pack",
+  "prerequisites": {
+    "min-ambari-version" : "2.5.1.0",
+    "max-ambari-version" : "2.7.3"
+  },
+  "artifacts": [
+    {
+      "name" : "hdp-addon-services",
+      "type" : "stack-addon-service-definitions",
+      "source_dir": "hdp-addon-services/DDP/3.1",
+      "service_versions_map": [
+        {
+          "service_name" : "NIFI",
+          "service_version" : "1.5.0",
+          "applicable_stacks" : [
+            {
+              "stack_name" : "HDP",
+              "stack_version" : "2.6"
+            }
+          ]
+        },
+        {
+          "service_name" : "NIFI_REGISTRY",
+          "service_version" : "0.1.0",
+          "applicable_stacks" : [
+            {
+              "stack_name" : "HDP",
+              "stack_version" : "2.6"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

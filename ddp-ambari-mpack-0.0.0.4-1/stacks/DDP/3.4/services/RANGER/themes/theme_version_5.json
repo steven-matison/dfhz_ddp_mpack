@@ -1,0 +1,38 @@
+{
+  "name": "default",
+  "configuration": {
+    "placement": {
+      "configuration-layout": "default",
+      "configs": [
+        {
+          "config": "ranger-env/ranger-nifi-registry-plugin-enabled",
+          "subsection-name": "section-ranger-plugin-row1-col1",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "NIFI_REGISTRY",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "widgets": [
+      {
+        "config": "ranger-env/ranger-nifi-registry-plugin-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      }
+    ]
+  }
+}
