@@ -16,7 +16,7 @@
 -->
 <metainfo>
     <versions>
-        <active>true</active>
+        <active>false</active>
     </versions>
     <extends>3.2.b</extends>
     <minJdk>1.7</minJdk>
