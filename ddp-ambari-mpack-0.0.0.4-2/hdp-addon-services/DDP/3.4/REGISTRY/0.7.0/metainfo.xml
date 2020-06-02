@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+        Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>REGISTRY</name>
+            <version>0.7.0</version>
+            <extends>common-services/REGISTRY/0.7.0</extends>
+            <themes>
+                <theme>
+                    <fileName>theme_version_4.json</fileName>
+                    <default>true</default>
+                </theme>
+            </themes>
+            <components>
+                <component>
+                    <name>REGISTRY_SERVER</name>
+                    <versionAdvertised>false</versionAdvertised>
+                </component>
+            </components>
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>redhat7,centos7-ppc,sles12,debian9,amazonlinux2,ubuntu12,ubuntu14,ubuntu16</osFamily>
+                    <packages>
+                        <package>
+                            <name>registry_3_4_*</name>
+                        </package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+        </service>
+    </services>
+</metainfo>
