@@ -1,0 +1,14 @@
+{
+  "DDP": {
+    "stack_selector": [
+      "hdf-select",
+      "/usr/bin/hdf-select",
+      "hdf-select"
+    ],
+    "conf_selector": [
+      "hdfconf-select",
+      "/usr/bin/hdfconf-select",
+      "hdf-select"
+    ]
+  }
+}
