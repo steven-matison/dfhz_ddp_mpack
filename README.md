@@ -21,3 +21,6 @@ ambari-server restart</pre>
 
 #### Known Issues
  - Sometimes the public repos for HDF/HDP (public-repo-1.hortonworks.com) are slow or do not respond during checks.  Refresh page, skip validation, choose use local repos then choose back to public, refresh page etc.  Make sure "Why is this not selected?" goes away and public repos should persist through install.
+- You must install Third Party Tools (hue,elasticsearch,etc) after the base cluster is installed and after executing python command to stop ambari managing user groups:
+<pre>python /var/lib/ambari-server/resources/scripts/configs.py -u admin -p admin -n [CLUSTER_NAME] -l [CLUSTER_FQDN] -t 8080 -a set -c cluster-env -k  ignore_groupsusers_create -v true</pre>
+**** be sure to get the correct admin credentials, [CLUSTER_NAME], and [CLUSTER_FQDN] for command above
