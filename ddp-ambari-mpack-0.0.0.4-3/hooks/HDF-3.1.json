@@ -11,7 +11,7 @@
   },
   "artifacts": [
     {
-      "name" : "hdp-addon-services",
+      "name" : "ddp-addon-services",
       "type" : "stack-addon-service-definitions",
       "source_dir": "ddp-addon-services/DDP/3.1",
       "service_versions_map": [

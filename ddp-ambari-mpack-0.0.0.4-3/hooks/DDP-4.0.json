@@ -11,7 +11,7 @@
   },
   "artifacts": [
     {
-      "name": "hdp-addon-services-hdp26",
+      "name": "ddp-addon-services-hdp26",
       "type": "stack-addon-service-definitions",
       "source_dir": "ddp-addon-services/DDP/3.4",
       "service_versions_map": [
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "name": "hdp-addon-services-hdp30",
+      "name": "ddp-addon-services-hdp30",
       "type": "stack-addon-service-definitions",
       "source_dir": "ddp-addon-services/DDP/3.4",
       "service_versions_map": [
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "name": "hdp-addon-services-hdp31",
+      "name": "ddp-addon-services-hdp31",
       "type": "stack-addon-service-definitions",
       "source_dir": "ddp-addon-services/DDP/3.4",
       "service_versions_map": [
