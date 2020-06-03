@@ -16,23 +16,13 @@
    limitations under the License.
 -->
 <reposinfo>
-    <latest>http://public-repo-1.hortonworks.com/HDF/hdf_urlinfo.json</latest>
     <os family="redhat7">
         <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP/centos7/3.x/updates/3.1.4.0</baseurl>
-            <repoid>HDP-3.1.4</repoid>
-            <reponame>HDP</reponame>
+            <baseurl>https://makeopensourcegreatagain.com/rpms/</baseurl>
+            <repoid>MOSGA-3x</repoid>
+            <reponame>MOSGA</reponame>
         </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.4.0.0</baseurl>
-            <repoid>HDF-3.4</repoid>
-            <reponame>HDF</reponame>
-        </repo>
-        <repo>
-            <baseurl>http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.22/repos/centos7</baseurl>
-            <repoid>HDP-UTILS-1.1.0.22</repoid>
-            <reponame>HDP-UTILS</reponame>
-        </repo>
+
         <repo>
             <baseurl>https://artifacts.elastic.co/packages/7.x/yum</baseurl>
             <repoid>elasticsearch-7.x</repoid>
