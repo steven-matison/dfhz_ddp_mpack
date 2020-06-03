@@ -13,7 +13,7 @@
     {
       "name" : "hdp-addon-services",
       "type" : "stack-addon-service-definitions",
-      "source_dir": "hdp-addon-services/DDP/3.1",
+      "source_dir": "ddp-addon-services/DDP/3.1",
       "service_versions_map": [
         {
           "service_name" : "NIFI",

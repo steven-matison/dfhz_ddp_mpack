@@ -13,14 +13,14 @@
     {
       "name": "hdp-addon-services-hdp26",
       "type": "stack-addon-service-definitions",
-      "source_dir": "hdp-addon-services/DDP/3.4",
+      "source_dir": "ddp-addon-services/DDP/3.4",
       "service_versions_map": [
         {
           "service_name": "NIFI",
           "service_version": "1.9.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "2.6"
             }
           ]
@@ -30,7 +30,7 @@
           "service_version": "0.3.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "2.6"
             }
           ]
@@ -40,7 +40,7 @@
           "service_version": "0.7.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "2.6"
             }
           ]
@@ -50,7 +50,7 @@
           "service_version": "0.6.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "2.6"
             }
           ]
@@ -60,14 +60,14 @@
     {
       "name": "hdp-addon-services-hdp30",
       "type": "stack-addon-service-definitions",
-      "source_dir": "hdp-addon-services/DDP/3.4",
+      "source_dir": "ddp-addon-services/DDP/3.4",
       "service_versions_map": [
         {
           "service_name": "NIFI",
           "service_version": "1.9.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.0"
             }
           ]
@@ -77,7 +77,7 @@
           "service_version": "0.3.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.0"
             }
           ]
@@ -87,7 +87,7 @@
           "service_version": "0.7.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.0"
             }
           ]
@@ -97,7 +97,7 @@
           "service_version": "0.6.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.0"
             }
           ]
@@ -107,14 +107,14 @@
     {
       "name": "hdp-addon-services-hdp31",
       "type": "stack-addon-service-definitions",
-      "source_dir": "hdp-addon-services/DDP/3.4",
+      "source_dir": "ddp-addon-services/DDP/3.4",
       "service_versions_map": [
         {
           "service_name": "NIFI",
           "service_version": "1.9.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.1"
             }
           ]
@@ -124,7 +124,7 @@
           "service_version": "0.3.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.1"
             }
           ]
@@ -134,7 +134,7 @@
           "service_version": "0.7.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.1"
             }
           ]
@@ -144,7 +144,7 @@
           "service_version": "0.6.0",
           "applicable_stacks": [
             {
-              "stack_name": "HDP",
+              "stack_name": "DDP",
               "stack_version": "3.1"
             }
           ]
