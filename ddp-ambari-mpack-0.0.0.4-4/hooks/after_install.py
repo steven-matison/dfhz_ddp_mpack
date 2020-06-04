@@ -17,7 +17,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 '''
-
 import os
 from switch_addon_services import switch_addon_services
 
@@ -27,6 +26,18 @@ def main():
   hooks_dir = os.path.dirname(file_path)
   ddp_config_path = os.path.join(hooks_dir, "DDP-4.0.json")
   switch_addon_services(ddp_config_path)
+  #Logger.info("Create DDP HDF HDP ")
+  ddp_path = "/usr/ddp"
+  hdf_path = "/usr/hdf"
+  hdp_path = "/usr/hdp"
+  try:
+      os.mkdir(ddp_path)
+      os.symlink(ddp_path, hdf_path)
+      os.symlink(ddp_path, hdp_path)
+  except OSError:
+      print ("Creation of the directory %s failed" % ddp_path)
+  else:
+      print ("Successfully created the directory %s " % ddp_path)
   return 0
 
 
