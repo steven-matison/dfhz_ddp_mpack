@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>STREAMLINE</name>
+            <version>0.6.0</version>
+            <extends>common-services/STREAMLINE/0.6.0</extends>
+            <themes>
+                <theme>
+                    <fileName>theme_version_2.json</fileName>
+                    <default>true</default>
+                </theme>
+            </themes>
+            <requiredServices>
+                <service>AMBARI_INFRA_SOLR</service>
+                <service>LOGSEARCH</service>
+            </requiredServices>
+            <components>
+                <component>
+                    <name>STREAMLINE_SERVER</name>
+                    <versionAdvertised>false</versionAdvertised>
+                </component>
+            </components>
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>redhat7,amazon2015,suse11,suse12</osFamily>
+                    <packages>
+                        <package>
+                            <name>streamline_3_2_*</name>
+                        </package>
+                    </packages>
+                </osSpecific>
+                <osSpecific>
+                    <osFamily>debian9,ubuntu14,ubuntu16</osFamily>
+                    <packages>
+                        <package>
+                            <name>streamline-3_2_*</name>
+                        </package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+        </service>
+    </services>
+</metainfo>

@@ -1,0 +1,109 @@
+{
+  "type": "full-release",
+  "name": "hdf-ambari-mpack",
+  "version": "3.4.1.1-4",
+  "hash": "8d2f7cf77ab335183b5482af61ad823332c57312",
+  "branch": "UNKNOWN",
+  "description": "DDP Ambari Management Pack",
+  "prerequisites": {
+    "min-ambari-version": "2.5.1.0",
+    "max-ambari-version": "2.7.3"
+  },
+  "artifacts": [
+    {
+      "name": "ddp-addon-services-hdp26",
+      "type": "stack-addon-service-definitions",
+      "source_dir": "ddp-addon-services/DDP/3.2",
+      "service_versions_map": [
+        {
+          "service_name": "NIFI",
+          "service_version": "1.7.0",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "2.6"
+            }
+          ]
+        },
+        {
+          "service_name": "NIFI_REGISTRY",
+          "service_version": "0.2.0",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "2.6"
+            }
+          ]
+        },
+        {
+          "service_name": "REGISTRY",
+          "service_version": "0.5.2",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "2.6"
+            }
+          ]
+        },
+        {
+          "service_name": "STREAMLINE",
+          "service_version": "0.6.0",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "2.6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ddp-addon-services-hdp30",
+      "type": "stack-addon-service-definitions",
+      "source_dir": "ddp-addon-services/DDP/3.2",
+      "service_versions_map": [
+        {
+          "service_name": "NIFI",
+          "service_version": "1.7.0",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "3.0"
+            }
+          ]
+        },
+        {
+          "service_name": "NIFI_REGISTRY",
+          "service_version": "0.2.0",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "3.0"
+            }
+          ]
+        },
+        {
+          "service_name": "REGISTRY",
+          "service_version": "0.5.2",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "3.0"
+            }
+          ]
+        },
+        {
+          "service_name": "STREAMLINE",
+          "service_version": "0.6.0",
+          "applicable_stacks": [
+            {
+              "stack_name": "DDP",
+              "stack_version": "3.0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
